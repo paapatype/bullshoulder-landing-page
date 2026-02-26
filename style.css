@@ -1,3 +1,11 @@
+/* ─── Font ───────────────────────────────────────────────── */
+@font-face {
+  font-family: 'AcuminVC';
+  src: url('fonts/AcuminVariableConcept.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
 /* ─── Reset ─────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -10,14 +18,14 @@ html, body {
   height: 100%;
   background: #ffffff;
   color: #111111;
-  font-family: 'Barlow', sans-serif;
+  font-family: 'AcuminVC', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ─── Page layout ────────────────────────────────────────── */
 .page {
   min-height: 100dvh;
-  max-width: 480px;       /* mobile canvas */
+  max-width: 480px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -25,9 +33,9 @@ html, body {
 
 /* ─── Hero / Wordmark ────────────────────────────────────── */
 .hero {
-  flex: 1;                /* takes up the large top space */
+  flex: 1;
   display: flex;
-  align-items: flex-end;  /* wordmark sits at the bottom of hero */
+  align-items: flex-end;
   padding: 0 32px 40px;
 }
 
@@ -37,7 +45,7 @@ html, body {
 
 .wordmark {
   display: block;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: 'AcuminVC', sans-serif;
   font-weight: 700;
   font-size: clamp(2.2rem, 9.5vw, 3rem);
   letter-spacing: 0.18em;
@@ -57,7 +65,7 @@ html, body {
 }
 
 .label {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'AcuminVC', sans-serif;
   font-weight: 400;
   font-size: 0.65rem;
   letter-spacing: 0.28em;
@@ -67,7 +75,7 @@ html, body {
 }
 
 .heading {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'AcuminVC', sans-serif;
   font-weight: 400;
   font-size: clamp(2rem, 9vw, 2.6rem);
   letter-spacing: 0.16em;
@@ -85,12 +93,12 @@ html, body {
   padding: 16px 48px;
   background: #e8e8e8;
   color: #111111;
-  font-family: 'Barlow', sans-serif;
+  font-family: 'AcuminVC', sans-serif;
   font-weight: 400;
   font-size: 0.9rem;
   letter-spacing: 0.04em;
   text-decoration: none;
-  border-radius: 100px;    /* pill shape */
+  border-radius: 100px;
   transition: background 0.2s ease;
   min-width: 260px;
   text-align: center;
