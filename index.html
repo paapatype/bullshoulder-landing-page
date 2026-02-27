@@ -29,7 +29,7 @@
         <span data-capability-rotator>PACKAGING AND<br>PRINT</span>
       </h1>
       <div class="cta-track">
-        <a href="#" class="cta"><span class="cta-text">Get Started</span></a>
+        <a href="book.html" class="cta"><span class="cta-text">Get Started</span></a>
         <span class="cta-arrow" aria-hidden="true">→</span>
       </div>
     </section>
@@ -81,6 +81,43 @@
 
     // Begin after initial hold
     setTimeout(advance, HOLD);
+  }());
+  </script>
+
+  <script>
+  /* ─── Click-to-unlock interaction ───────────────────────── */
+  (function () {
+    var track = document.querySelector('.cta-track');
+    var pill  = document.querySelector('.cta');
+    var arrow = document.querySelector('.cta-arrow');
+    if (!track || !pill || !arrow) return;
+
+    // White overlay — fades in after animation completes
+    var overlay = document.createElement('div');
+    overlay.className = 'slide-overlay';
+    document.body.appendChild(overlay);
+
+    pill.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      // Measure how far the pill can slide (fills the arrow section)
+      var trackPad = parseFloat(getComputedStyle(track).paddingLeft);
+      var maxSlide = track.offsetWidth - pill.offsetWidth - 2 * trackPad;
+
+      // Slide pill right — CSS spring transition (0.35s) animates this
+      pill.style.transform = 'translateX(' + maxSlide + 'px)';
+      arrow.style.transition = 'opacity 0.25s ease';
+      arrow.style.opacity = '0';
+      track.classList.add('is-dragging'); // suppress hover state during animation
+
+      // After spring animation completes, fade to white then navigate
+      setTimeout(function () {
+        overlay.classList.add('is-visible');
+        setTimeout(function () {
+          window.location.href = 'book.html';
+        }, 600); // matches overlay transition duration
+      }, 350); // matches pill transform transition duration
+    });
   }());
   </script>
 </body>

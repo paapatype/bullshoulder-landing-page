@@ -138,7 +138,7 @@ html, body {
 }
 
 /* Slide-to-unlock: pill shifts right on track hover */
-.cta-track:hover .cta {
+.cta-track:not(.is-dragging):hover .cta {
   transform: translateX(8px);
   box-shadow:
     0 8px 28px rgba(0, 0, 0, 0.20),
@@ -168,9 +168,16 @@ html, body {
   animation: arrow-slide 2.2s ease-in-out infinite;
 }
 
-.cta-track:hover .cta-arrow {
+.cta-track:not(.is-dragging):hover .cta-arrow {
   animation: none;
   opacity: 0.35;
+}
+
+/* Drag-active state — suppress hover side-effects while dragging */
+.cta-track.is-dragging .cta-arrow {
+  animation: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 @keyframes cta-shimmer {
@@ -184,6 +191,22 @@ html, body {
   36%  { transform: translateX(0);   opacity: 0; }
   65%  { transform: translateX(0);   opacity: 1; }
   100% { transform: translateX(0);   opacity: 1; }
+}
+
+/* ─── Fade-to-white overlay ─────────────────────────────── */
+.slide-overlay {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 600ms ease;
+  z-index: 100;
+}
+
+.slide-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ─── Capability rotator ─────────────────────────────────── */
@@ -250,6 +273,44 @@ html, body {
 
   .cta-track:hover .cta {
     transform: none;
+  }
+
+  .slide-overlay {
+    transition: none;
+  }
+}
+
+/* ─── Booking page ───────────────────────────────────────── */
+.book-page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10dvh 26px 6dvh;
+}
+
+.book-headline {
+  font-family: 'AcuminVC', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 2.5vw, 1.75rem);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #111111;
+  line-height: 1.6;
+  max-width: 680px;
+  text-align: center;
+  margin-bottom: 8dvh;
+}
+
+.book-calendly {
+  width: 100%;
+  max-width: 900px;
+}
+
+@media (min-width: 768px) {
+  .book-page {
+    padding: 8dvh 8vw 6dvh;
   }
 }
 
