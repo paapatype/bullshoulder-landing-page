@@ -123,9 +123,9 @@ html, body {
 
 /* ─── Capability rotator ─────────────────────────────────── */
 
-/* Lock height to one line so layout never shifts between items */
+/* Lock height to two lines so layout never shifts between items */
 .heading {
-  min-height: calc(1.125rem * 1.5);
+  min-height: calc(1.125rem * 1.5 * 2);
 }
 
 [data-capability-rotator] {
@@ -212,7 +212,7 @@ html, body {
   .heading {
     font-size: clamp(1.125rem, 1.5vw, 1.75rem);
     letter-spacing: 0.2em;
-    min-height: 1lh;
+    min-height: 2lh;
   }
 
   .cta {

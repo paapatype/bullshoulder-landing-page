@@ -26,7 +26,7 @@
     <section class="capabilities">
       <p class="label">CAPABILITIES</p>
       <h1 class="heading">
-        <span data-capability-rotator>PACKAGING AND PRINT</span>
+        <span data-capability-rotator>PACKAGING AND<br>PRINT</span>
       </h1>
       <a href="#" class="cta">Get Started</a>
     </section>
@@ -36,13 +36,13 @@
   <script>
   (function () {
     var caps = [
-      'PACKAGING AND PRINT',
+      'PACKAGING AND<br>PRINT',
       'BRAND STRATEGY',
       'VISUAL IDENTITY DESIGN',
       '3D ASSETS',
       'GRAPHIC DESIGN',
       'PRESENTATION TRAINING',
-      'CATALOGUE & WEBSITE DESIGN'
+      'CATALOGUE &amp;<br>WEBSITE DESIGN'
     ];
 
     var HOLD       = 2000;  // ms text is fully visible
@@ -60,7 +60,7 @@
       setTimeout(function () {
         // 2. Advance index, swap text
         idx = (idx + 1) % caps.length;
-        el.textContent = caps[idx];
+        el.innerHTML = caps[idx];
 
         // 3. Snap to incoming-start position (transition: none)
         el.classList.remove('is-outgoing');
