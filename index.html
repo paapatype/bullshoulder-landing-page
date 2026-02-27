@@ -9,22 +9,76 @@
 <body>
   <main class="page">
 
-    <!-- Hero / Wordmark section -->
-    <section class="hero">
-      <div class="wordmark-wrap">
-        <span class="wordmark">BULLSHOULDER</span>
-      </div>
+    <!-- Tagline -->
+    <section class="tagline">
+      <p>CREATIVE</p>
+      <p>PARTNER</p>
+      <p>FOR LEGACY</p>
+      <p>MANUFACTURING</p>
     </section>
 
-    <!-- Capabilities section -->
+    <!-- Wordmark -->
+    <div class="wordmark-wrap">
+      <img src="BULLSHOULDER_logo.png" alt="BULLSHOULDER" class="wordmark-img" />
+    </div>
+
+    <!-- Capabilities -->
     <section class="capabilities">
       <p class="label">CAPABILITIES</p>
       <h1 class="heading">
-        PRINT AND<br />PACKAGING
+        <span data-capability-rotator>PACKAGING AND PRINT</span>
       </h1>
       <a href="#" class="cta">Get Started</a>
     </section>
 
   </main>
+
+  <script>
+  (function () {
+    var caps = [
+      'PACKAGING AND PRINT',
+      'BRAND STRATEGY',
+      'VISUAL IDENTITY DESIGN',
+      '3D ASSETS',
+      'GRAPHIC DESIGN',
+      'PRESENTATION TRAINING',
+      'CATALOGUE & WEBSITE DESIGN'
+    ];
+
+    var HOLD       = 2000;  // ms text is fully visible
+    var TRANSITION =  500;  // ms per blur transition (out or in)
+
+    var el = document.querySelector('[data-capability-rotator]');
+    if (!el) return;
+
+    var idx = 0;
+
+    function advance() {
+      // 1. Blur out
+      el.classList.add('is-outgoing');
+
+      setTimeout(function () {
+        // 2. Advance index, swap text
+        idx = (idx + 1) % caps.length;
+        el.textContent = caps[idx];
+
+        // 3. Snap to incoming-start position (transition: none)
+        el.classList.remove('is-outgoing');
+        el.classList.add('is-pre-incoming');
+        void el.offsetHeight; // force paint so snap is applied
+
+        // 4. Blur in — removing is-pre-incoming triggers the transition
+        el.classList.remove('is-pre-incoming');
+
+        // 5. Wait for in-transition to finish, then hold, then repeat
+        setTimeout(advance, TRANSITION + HOLD);
+
+      }, TRANSITION);
+    }
+
+    // Begin after initial hold
+    setTimeout(advance, HOLD);
+  }());
+  </script>
 </body>
 </html>

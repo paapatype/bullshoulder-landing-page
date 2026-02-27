@@ -29,39 +29,48 @@ html, body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  padding: 0 26px;
 }
 
-/* ─── Hero / Wordmark ────────────────────────────────────── */
-.hero {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  padding: 0 32px 40px;
+/* ─── Tagline ────────────────────────────────────────────── */
+.tagline {
+  padding-top: 19dvh;
+  text-align: center;
 }
 
-.wordmark-wrap {
-  width: 100%;
-}
-
-.wordmark {
-  display: block;
+.tagline p {
   font-family: 'AcuminVC', sans-serif;
-  font-weight: 700;
-  font-size: clamp(2.2rem, 9.5vw, 3rem);
-  letter-spacing: 0.18em;
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #111111;
-  white-space: nowrap;
-  line-height: 1;
+  line-height: 1.5;
+}
+
+/* ─── Wordmark ───────────────────────────────────────────── */
+.wordmark-wrap {
+  margin-top: 14dvh;
+  width: 100%;
+  min-width: 0;
+}
+
+.wordmark-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 /* ─── Capabilities section ───────────────────────────────── */
 .capabilities {
-  padding: 60px 32px 64px;
+  margin-top: 18dvh;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 14dvh;
 }
 
 .label {
@@ -76,13 +85,13 @@ html, body {
 
 .heading {
   font-family: 'AcuminVC', sans-serif;
-  font-weight: 400;
-  font-size: clamp(2rem, 9vw, 2.6rem);
-  letter-spacing: 0.16em;
+  font-weight: 300;
+  font-size: 1.125rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: 1.5;
   color: #111111;
-  margin-bottom: 48px;
+  margin-bottom: auto;
 }
 
 /* ─── CTA Button ─────────────────────────────────────────── */
@@ -90,22 +99,74 @@ html, body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 48px;
-  background: #e8e8e8;
+  padding: 8px 40px;
+  background: #d9d9d9;
   color: #111111;
   font-family: 'AcuminVC', sans-serif;
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   letter-spacing: 0.04em;
   text-decoration: none;
   border-radius: 100px;
   transition: background 0.2s ease;
-  min-width: 260px;
-  text-align: center;
+  margin-top: 11dvh;
 }
 
 .cta:hover {
-  background: #d4d4d4;
+  background: #c4c4c4;
+}
+
+/* ─── Capability rotator ─────────────────────────────────── */
+
+/* Lock height to one line so layout never shifts between items */
+.heading {
+  min-height: calc(1.125rem * 1.5);
+}
+
+[data-capability-rotator] {
+  display: block;
+  will-change: opacity, filter, transform;
+  transition:
+    opacity   500ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter    500ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* State: blurring out — text rises and blurs away */
+[data-capability-rotator].is-outgoing {
+  opacity: 0;
+  filter: blur(7px);
+  transform: translateY(-3px);
+}
+
+/* State: snap-set before blur-in — applied instantly (transition: none),
+   removed immediately after, so the browser transitions from here → visible */
+[data-capability-rotator].is-pre-incoming {
+  opacity: 0;
+  filter: blur(7px);
+  transform: translateY(3px);
+  transition: none;
+}
+
+/* ─── Reduced-motion override ────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  [data-capability-rotator] {
+    will-change: auto;
+    transition: opacity 250ms linear;
+  }
+
+  [data-capability-rotator].is-outgoing {
+    opacity: 0;
+    filter: none;
+    transform: none;
+  }
+
+  [data-capability-rotator].is-pre-incoming {
+    opacity: 0;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ─── Responsive: larger screens show page as a card ──────── */
