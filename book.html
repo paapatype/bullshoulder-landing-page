@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a call — Bullshoulder</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Page starts invisible; JS immediately transitions to visible.
+       The browser's white background during load matches the fade-to-white
+       overlay on the landing page, making the transition seamless. -->
+  <style>body { opacity: 0; }</style>
+</head>
+<body>
+
+  <main class="book-page">
+
+    <p class="book-headline">
+      The best way to know the way we work, our process, and how we deliver
+      outcomes is to have a 15-minute intro call with us.
+    </p>
+
+    <div class="book-calendly">
+      <!-- Calendly inline widget — replace PLACEHOLDER with your Calendly URL -->
+      <div
+        class="calendly-inline-widget"
+        data-url="https://calendly.com/sankalp-bullshoulder/30min"
+        style="min-width:320px;height:700px;"
+      ></div>
+    </div>
+
+  </main>
+
+  <!-- Async so the widget script never blocks the fade-in -->
+  <script async src="https://assets.calendly.com/assets/external/widget.js"></script>
+
+  <script>
+  (function () {
+    // rAF gives the browser one frame to paint opacity:0,
+    // then the transition animates from that start state to opacity:1
+    requestAnimationFrame(function () {
+      document.body.style.transition = 'opacity 500ms ease';
+      document.body.style.opacity    = '1';
+    });
+  }());
+  </script>
+
+</body>
+</html>
