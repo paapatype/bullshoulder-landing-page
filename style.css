@@ -171,11 +171,48 @@ html, body {
   }
 }
 
-/* ─── Responsive: larger screens show page as a card ──────── */
-@media (min-width: 640px) {
+/* ─── Desktop layout ─────────────────────────────────────── */
+@media (min-width: 768px) {
   .page {
-    min-height: 100dvh;
-    border-left: 1px solid #f0f0f0;
-    border-right: 1px solid #f0f0f0;
+    max-width: 100%;
+    padding: 0 8vw;
+  }
+
+  .tagline {
+    padding-top: 12dvh;
+  }
+
+  .tagline p {
+    font-size: clamp(0.875rem, 0.95vw, 1.1rem);
+    letter-spacing: 0.22em;
+    line-height: 1.6;
+  }
+
+  .wordmark-wrap {
+    margin-top: 5dvh;
+  }
+
+  .capabilities {
+    margin-top: 5dvh;
+    padding-bottom: 10dvh;
+  }
+
+  .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    margin-bottom: 12px;
+  }
+
+  .heading {
+    font-size: clamp(1.125rem, 1.5vw, 1.75rem);
+    letter-spacing: 0.2em;
+    min-height: 1lh;
+  }
+
+  .cta {
+    margin-top: 5dvh;
+    padding: 10px 56px;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
   }
 }
