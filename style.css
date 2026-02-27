@@ -1,7 +1,8 @@
 /* ─── Font ───────────────────────────────────────────────── */
 @font-face {
   font-family: 'AcuminVC';
-  src: url('fonts/AcuminVariableConcept.woff2') format('woff2'),
+  src: url('fonts/AcuminVariableConcept.subset.woff2') format('woff2'),
+       url('fonts/AcuminVariableConcept.woff2') format('woff2'),
        url('fonts/AcuminVariableConcept.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
@@ -21,6 +22,8 @@ html, body {
   background: #ffffff;
   color: #111111;
   font-family: 'AcuminVC', sans-serif;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -190,6 +193,9 @@ html, body {
 
   .wordmark-wrap {
     margin-top: 5dvh;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .capabilities {
