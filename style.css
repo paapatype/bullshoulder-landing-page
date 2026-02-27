@@ -104,21 +104,33 @@ html, body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 40px;
-  background: #d9d9d9;
+  padding: 12px 44px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
   color: #111111;
   font-family: 'AcuminVC', sans-serif;
+  font-style: normal;
   font-weight: 400;
   font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.1em;
   text-decoration: none;
   border-radius: 100px;
-  transition: background 0.2s ease;
+  border: 1px solid rgba(210, 210, 210, 0.7);
+  box-shadow:
+    0 0 0 4px rgba(0, 0, 0, 0.04),      /* outer track ring */
+    0 4px 18px rgba(0, 0, 0, 0.07),     /* drop shadow */
+    inset 0 1px 0 rgba(255, 255, 255, 1); /* top inner highlight */
+  transition: box-shadow 0.25s ease, transform 0.22s ease;
   margin-top: 11dvh;
 }
 
 .cta:hover {
-  background: #c4c4c4;
+  box-shadow:
+    0 0 0 4px rgba(0, 0, 0, 0.05),
+    0 8px 28px rgba(0, 0, 0, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
 }
 
 /* ─── Capability rotator ─────────────────────────────────── */
@@ -200,7 +212,12 @@ html, body {
 
   .capabilities {
     margin-top: 5dvh;
-    padding-bottom: 10dvh;
+    justify-content: center;
+    padding-bottom: 20dvh;
+  }
+
+  .capabilities .heading {
+    margin-bottom: 0;
   }
 
   .label {
@@ -217,8 +234,8 @@ html, body {
 
   .cta {
     margin-top: 5dvh;
-    padding: 10px 56px;
+    padding: 14px 60px;
     font-size: 0.8rem;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
   }
 }
