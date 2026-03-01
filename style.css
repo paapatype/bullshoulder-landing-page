@@ -287,7 +287,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 10dvh 26px 6dvh;
+  padding: 6dvh 26px 6dvh;
 }
 
 .book-headline {
@@ -300,7 +300,7 @@ html, body {
   line-height: 1.6;
   max-width: 680px;
   text-align: center;
-  margin-bottom: 8dvh;
+  margin-bottom: 5dvh;
 }
 
 .book-calendly {
@@ -308,9 +308,24 @@ html, body {
   max-width: 900px;
 }
 
+/* On mobile, cap the Calendly widget height at Calendly's minimum (630px)
+   so the enquiry section is reachable without excessive scrolling */
+.calendly-inline-widget {
+  height: 630px !important;
+}
+
 @media (min-width: 768px) {
   .book-page {
     padding: 8dvh 8vw 6dvh;
+  }
+
+  .book-headline {
+    margin-bottom: 8dvh;
+  }
+
+  /* Restore full height on desktop where screen real estate is ample */
+  .calendly-inline-widget {
+    height: 700px !important;
   }
 }
 
