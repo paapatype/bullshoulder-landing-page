@@ -445,9 +445,11 @@ html, body {
 
 .enquiry-form__input {
   font-family: 'AcuminVC', sans-serif;
+  font-style: normal;
   font-weight: 300;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
+  font-variation-settings: 'slnt' 0;
   color: #111111;
   background: #ffffff;
   border: none;
