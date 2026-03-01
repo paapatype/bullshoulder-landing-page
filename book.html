@@ -14,6 +14,8 @@
 
   <main class="book-page">
 
+    <a href="index.html" class="back-link">← Back</a>
+
     <p class="book-headline">
       The best way to know the way we work, our process, and how we deliver
       outcomes is to have a 15-minute intro call with us.
@@ -28,6 +30,54 @@
       ></div>
     </div>
 
+    <!-- ─── Enquiry Form ─────────────────────────────────────── -->
+    <section class="enquiry-section">
+      <p class="label enquiry-section__label">Or Send an Enquiry</p>
+
+      <form
+        class="enquiry-form"
+        id="enquiry-form"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        novalidate
+      >
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+        <input type="hidden" name="_subject" value="New enquiry from Bullshoulder.com" />
+        <input type="hidden" name="_captcha" value="false" />
+
+        <div class="enquiry-form__field">
+          <label class="enquiry-form__label" for="eq-name">Name</label>
+          <input class="enquiry-form__input" type="text" id="eq-name" name="name" autocomplete="name" required />
+        </div>
+
+        <div class="enquiry-form__field">
+          <label class="enquiry-form__label" for="eq-company">Company Name</label>
+          <input class="enquiry-form__input" type="text" id="eq-company" name="company" autocomplete="organization" />
+        </div>
+
+        <div class="enquiry-form__field">
+          <label class="enquiry-form__label" for="eq-email">Email</label>
+          <input class="enquiry-form__input" type="email" id="eq-email" name="email" autocomplete="email" required />
+        </div>
+
+        <div class="enquiry-form__field">
+          <label class="enquiry-form__label" for="eq-enquiry">Enquiry</label>
+          <textarea class="enquiry-form__input enquiry-form__textarea" id="eq-enquiry" name="enquiry" rows="5" required></textarea>
+        </div>
+
+        <p class="enquiry-form__status enquiry-form__status--success" id="eq-success" aria-live="polite" hidden>
+          Message sent. We'll be in touch.
+        </p>
+        <p class="enquiry-form__status enquiry-form__status--error" id="eq-error" aria-live="polite" hidden>
+          Something went wrong. Please try again.
+        </p>
+
+        <button class="enquiry-form__submit" type="submit">
+          <span id="eq-btn-text">Send</span>
+        </button>
+      </form>
+    </section>
+
   </main>
 
   <!-- Async so the widget script never blocks the fade-in -->
@@ -40,6 +90,42 @@
     requestAnimationFrame(function () {
       document.body.style.transition = 'opacity 500ms ease';
       document.body.style.opacity    = '1';
+    });
+  }());
+  </script>
+
+  <script>
+  (function () {
+    var form    = document.getElementById('enquiry-form');
+    var btnText = document.getElementById('eq-btn-text');
+    var success = document.getElementById('eq-success');
+    var error   = document.getElementById('eq-error');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      success.hidden = true;
+      error.hidden   = true;
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var btn = form.querySelector('.enquiry-form__submit');
+      btn.disabled = true;
+      btnText.textContent = 'Sending\u2026';
+
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) })
+        .then(function (res) { return res.json(); })
+        .then(function (json) {
+          if (json.success) {
+            form.querySelectorAll('.enquiry-form__field').forEach(function (f) { f.hidden = true; });
+            btn.hidden     = true;
+            success.hidden = false;
+          } else { throw new Error(); }
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btnText.textContent = 'Send';
+          error.hidden = false;
+        });
     });
   }());
   </script>
