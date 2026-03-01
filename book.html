@@ -85,9 +85,11 @@
 
   <script>
   (function () {
-    // rAF gives the browser one frame to paint opacity:0,
-    // then the transition animates from that start state to opacity:1
+    // Scroll to the calendar while the page is still invisible,
+    // so it fades in already showing the calendar view.
     requestAnimationFrame(function () {
+      var cal = document.querySelector('.book-calendly');
+      if (cal) cal.scrollIntoView({ behavior: 'instant', block: 'start' });
       document.body.style.transition = 'opacity 500ms ease';
       document.body.style.opacity    = '1';
     });
