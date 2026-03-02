@@ -500,6 +500,7 @@ html, body {
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-variation-settings: 'slnt' 0;
   border: none;
   border-radius: 100px;
   cursor: pointer;
